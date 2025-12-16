@@ -13,7 +13,6 @@ variable "env" {
 variable "subscription_id" {
   type        = string
   description = "Azure subscription id."
-  default     = "REDACTED_SUBSCRIPTION_ID"
 }
 
 variable "primary_location" {
