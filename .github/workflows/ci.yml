@@ -1,0 +1,26 @@
+name: terraform-ci
+on: [push, pull_request]
+
+jobs:
+  tf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: fmt
+        run: terraform -chdir=senior/terraform fmt -check -recursive
+      - name: init
+        run: terraform -chdir=senior/terraform init -backend=false
+      - name: validate
+        run: terraform -chdir=senior/terraform validate
+
+  guardrail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tools/guardrail/requirements.txt
+      - name: guardrail
+        run: python tools/guardrail/guardrail.py
