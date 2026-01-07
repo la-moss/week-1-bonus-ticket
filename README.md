@@ -1,4 +1,4 @@
-# Azure DR Refresher (Terraform) — Senior Practice Ticket
+# Azure DR Refresher (Terraform) 
 
 ## Context
 The **payments** platform runs active/passive across **UK South (primary)** and **West Europe (secondary)**. The design is hub/spoke per region with global failover via Traffic Manager.
